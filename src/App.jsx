@@ -1,4 +1,6 @@
-import Header from "./components/Header"
+import Form from "./components/Form/Form"
+import Header from "./components/Header/Header"
+import PatientList from "./components/PatientList/PatientList"
 function App() {
 
 
@@ -7,6 +9,8 @@ function App() {
     <div className="App">
     <>
     <Header/>
+    <Form/>
+    <PatientList/>
 
 
     </>
