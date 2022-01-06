@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
 
 const Header = () => {
-    return (
-        <div>
-            <h1>hola desde el header</h1>
-        </div>
-    );
-}
+  return (
+    <>
+      <h1 className="font-black text-5xl text-center md:w-2/3 mx-auto">
+        Seguimiento pacientes {""}<span className="text-indigo-500">VeteDog's</span>
+      </h1>
+    </>
+  );
+};
 
 export default Header;
