@@ -1,6 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 function Form() {
+  const [name, setName] = useState("");
+  const [nameOwner, setNameOwner] = useState("");
+  const [symptoms, setSymptoms] = useState("");
+  const [date, setDate] = useState("");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    //validating
+
+    if ([name, nameOwner, symptoms, date, email].includes("")) {
+      console.log("hay un campo vacio");
+      setError(true);
+      return
+    } 
+    setError(false);
+  };
+
   return (
     <div className="md:w-1/2 lg:w-2/5">
       <h2 className="font-black text-3xl text-center ">
@@ -12,7 +32,16 @@ function Form() {
         <span className="text-indigo-500 font-bold">Administralos</span>
       </p>
 
-      <form action="" className="bg-white shadow-md rounded-lg py-10 px-5 mb-10">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
+      >
+        {error && (
+          <div className="bg-red-600 text-white text-center p-3 uppercase font-bold mb-3 rounded-md">
+        
+            <p className="">Por favor diligencia todos los campos.</p>
+          </div>
+        )}
         <div className="mb-5">
           <label
             htmlFor="mascota"
@@ -26,6 +55,10 @@ function Form() {
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             placeholder="Nombre de la mascota"
             type="text"
+            /* Callback */
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
           />
         </div>
         <div className="mb-5">
@@ -41,6 +74,9 @@ function Form() {
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             placeholder="Nombre del propietario"
             type="text"
+            onChange={(e) => {
+              setNameOwner(e.target.value);
+            }}
           />
         </div>
         <div className="mb-5">
@@ -56,6 +92,9 @@ function Form() {
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             placeholder="Email de contacto"
             type="email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
         </div>
         <div className="mb-5">
@@ -70,6 +109,9 @@ function Form() {
             id="alta"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             type="date"
+            onChange={(e) => {
+              setDate(e.target.value);
+            }}
           />
         </div>
         <div className="mb-5">
@@ -84,6 +126,9 @@ function Form() {
             id="sintomas"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             placeholder="Describe los sintomas"
+            onChange={(e) => {
+              setSymptoms(e.target.value);
+            }}
           />
         </div>
 
