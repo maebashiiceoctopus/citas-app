@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Error from "../Error/Error";
 
-function Form() {
+function Form({ pacientes, setPacientes }) {
   const [name, setName] = useState("");
   const [nameOwner, setNameOwner] = useState("");
   const [symptoms, setSymptoms] = useState("");
@@ -16,9 +17,27 @@ function Form() {
     if ([name, nameOwner, symptoms, date, email].includes("")) {
       console.log("hay un campo vacio");
       setError(true);
-      return
-    } 
+      return;
+    }
     setError(false);
+    //objeto paciente
+
+    const PACIENTE = {
+      name,
+      nameOwner,
+      symptoms,
+      date,
+      email,
+    };
+
+    setPacientes([...pacientes, PACIENTE]);
+
+    //limpiar formulario
+    setName('');
+    setNameOwner('');
+    setSymptoms('');
+    setDate('');
+    setEmail('');
   };
 
   return (
@@ -36,12 +55,7 @@ function Form() {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
       >
-        {error && (
-          <div className="bg-red-600 text-white text-center p-3 uppercase font-bold mb-3 rounded-md">
-        
-            <p className="">Por favor diligencia todos los campos.</p>
-          </div>
-        )}
+        {error &&  <Error>Todos los campos son obligatorios</Error> }
         <div className="mb-5">
           <label
             htmlFor="mascota"
@@ -55,6 +69,7 @@ function Form() {
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             placeholder="Nombre de la mascota"
             type="text"
+            value={name}
             /* Callback */
             onChange={(e) => {
               setName(e.target.value);
@@ -74,6 +89,7 @@ function Form() {
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             placeholder="Nombre del propietario"
             type="text"
+            value={nameOwner}
             onChange={(e) => {
               setNameOwner(e.target.value);
             }}
@@ -92,6 +108,7 @@ function Form() {
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             placeholder="Email de contacto"
             type="email"
+            value={email}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -109,6 +126,7 @@ function Form() {
             id="alta"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             type="date"
+            value={date}
             onChange={(e) => {
               setDate(e.target.value);
             }}
@@ -126,6 +144,7 @@ function Form() {
             id="sintomas"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             placeholder="Describe los sintomas"
+            value={symptoms}
             onChange={(e) => {
               setSymptoms(e.target.value);
             }}
