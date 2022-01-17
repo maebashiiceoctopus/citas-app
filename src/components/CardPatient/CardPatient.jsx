@@ -19,7 +19,7 @@ export default function CardPatient({paciente}) {
         <p className="font-bold mb-3 text-gray-700 uppercase">
           Fecha Alta:{""}
         </p>
-        <span className="normal-case font-normal">7 Enero de 2022</span>
+        <span className="normal-case font-normal">{date}</span>
         <p className="font-bold mb-3 text-gray-700 uppercase">sintomas:{""}</p>
         <span className="normal-case font-normal">
           {symptoms}
