@@ -9,6 +9,12 @@ function Form({ pacientes, setPacientes }) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
 
+
+  const generarId=()=>{
+    const random= Math.random.toString(36).substr(2);
+    const date= Date.now().toString(36);
+    return random+date
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -28,6 +34,7 @@ function Form({ pacientes, setPacientes }) {
       symptoms,
       date,
       email,
+      id: generarId()
     };
 
     setPacientes([...pacientes, PACIENTE]);
@@ -38,7 +45,10 @@ function Form({ pacientes, setPacientes }) {
     setSymptoms('');
     setDate('');
     setEmail('');
+    
   };
+
+ 
 
   return (
     <div className="md:w-1/2 lg:w-2/5">
