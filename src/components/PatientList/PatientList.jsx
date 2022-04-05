@@ -1,7 +1,8 @@
 import React from "react";
 import CardPatient from "../CardPatient/CardPatient";
 
-export default function PatientList({ pacientes }) {
+
+export default function PatientList({ pacientes ,setPaciente}) {
   return (
     <div className="md:w-1/2 lg:w-3/5 md:h-screen overflow-y-scroll">
       {pacientes && pacientes.length ? (
@@ -16,7 +17,7 @@ export default function PatientList({ pacientes }) {
           </p>
 
           {pacientes.map((paciente) => (
-            <CardPatient key={paciente.id} paciente={paciente}></CardPatient>
+            <CardPatient key={paciente.id} paciente={paciente} setPaciente={setPaciente}></CardPatient>
           ))}
         </>
       ) : (

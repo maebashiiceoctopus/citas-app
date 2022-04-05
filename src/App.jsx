@@ -5,7 +5,8 @@ import PatientList from "./components/PatientList/PatientList";
 
 
 function App() {
-const [pacientes,setPacientes]=useState([])
+const [pacientes,setPacientes]=useState([]);
+const [paciente, setPaciente] = useState({})
  
 
   return (
@@ -13,8 +14,8 @@ const [pacientes,setPacientes]=useState([])
       <>
         <Header setPacientes={pacientes} />
         <div className="mt-12 md:flex">
-          <Form pacientes={pacientes} setPacientes={setPacientes} />
-          <PatientList pacientes={pacientes} />
+          <Form pacientes={pacientes} setPacientes={setPacientes}  paciente={paciente}/>
+          <PatientList pacientes={pacientes} setPaciente={setPaciente}/>
         </div>
       </>
     </div>

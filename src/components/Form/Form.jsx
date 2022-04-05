@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Error from "../Error/Error";
 
-function Form({ pacientes, setPacientes }) {
+function Form({ pacientes, setPacientes, paciente }) {
   const [name, setName] = useState("");
   const [nameOwner, setNameOwner] = useState("");
   const [symptoms, setSymptoms] = useState("");
   const [date, setDate] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
+  
+
+  useEffect(() => {
+    if(Object.keys(paciente).length > 0 );
+    setName(paciente.name);
+    setNameOwner(paciente.nameOwner);
+    setSymptoms(paciente.symptoms);
+    setDate(paciente.date);
+    setEmail(paciente.email);
+  }, [paciente])
+  
 
 
   const generarId=()=>{
@@ -163,7 +174,7 @@ function Form({ pacientes, setPacientes }) {
 
         <input
           type="submit"
-          value="Agregar Paciente"
+          value={paciente.id ? "Editar Paciente" : "Añadir Paciente"}
           className="bg-indigo-500 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-all"
         />
       </form>
